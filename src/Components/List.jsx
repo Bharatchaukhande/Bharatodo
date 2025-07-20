@@ -89,9 +89,9 @@ const List = () => {
               />
               <input
                 type="submit"
+                value="Add Todo"
                 style={{
                   borderRadius: "10px",
-                  backgroundColor: "#9B177E",
                   color: "white",
                   border: "none",
                   padding: "9px 18px",
@@ -99,17 +99,19 @@ const List = () => {
                   fontSize: "20px",
                   boxShadow: "0px 4px 20px rgba(0,0,0,0.2)",
                 }}
+                className="btn"
               />
               { todo.length !==   0 ? (<button onClick={()=>dispatch(cleartodo())} style={{
                   borderRadius: "10px",
-                  backgroundColor: "#9B177E",
                   color: "white",
                   border: "none",
                   padding: "9px 18px",
                   height: "40px",
                   fontSize: "20px",
                   boxShadow: "0px 4px 20px rgba(0,0,0,0.2)",
-                }}>Clear All Todos</button>) : null  }
+                }}
+                className="btn"
+                >Clear All</button>) : null  }
               
             </form>
           </div>

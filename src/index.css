@@ -8,4 +8,10 @@
     &:hover{
         color: #9B177E;
     }
-}   
+} 
+.btn{
+    background-color: #9B177E;
+    &:hover{
+        background-color: #9b177ebe;
+    }
+}  
