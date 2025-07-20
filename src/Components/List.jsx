@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addtodo,edittodo,cleartodo } from "../Slices/TodoSLice";
+import { addtodo, edittodo, cleartodo } from "../Slices/TodoSLice";
 import { removetodo } from "../Slices/TodoSLice";
 import { MdDelete } from "react-icons/md";
 import { MdEdit } from "react-icons/md";
@@ -12,7 +12,6 @@ const List = () => {
   const [editedValue, setEditedValue] = useState("");
 
   const todo = useSelector((store) => store.todo.lists);
-  
 
   const dispatch = useDispatch();
 
@@ -22,16 +21,16 @@ const List = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if(list !== ''){
-    dispatch(addtodo(list));
-    setList("");
+    if (list !== "") {
+      dispatch(addtodo(list));
+      setList("");
     }
   };
 
-  const handleEditClick = (value,index) =>{
-      setEditingIndex(index)
-      setEditedValue(value)
-  }
+  const handleEditClick = (value, index) => {
+    setEditingIndex(index);
+    setEditedValue(value);
+  };
   const handleSave = (index) => {
     if (editedValue.trim()) {
       dispatch(edittodo({ index, newValue: editedValue }));
@@ -59,6 +58,7 @@ const List = () => {
               justifyContent: "center",
               alignItems: "center",
             }}
+            className="main-container"
           >
             <form
               onSubmit={handleSubmit}
@@ -86,6 +86,7 @@ const List = () => {
                 name="todo"
                 value={list}
                 onChange={(e) => handleChange(e)}
+                className="input"
               />
               <input
                 type="submit"
@@ -101,18 +102,23 @@ const List = () => {
                 }}
                 className="btn"
               />
-              { todo.length !==   0 ? (<button onClick={()=>dispatch(cleartodo())} style={{
-                  borderRadius: "10px",
-                  color: "white",
-                  border: "none",
-                  padding: "9px 18px",
-                  height: "40px",
-                  fontSize: "20px",
-                  boxShadow: "0px 4px 20px rgba(0,0,0,0.2)",
-                }}
-                className="btn"
-                >Clear All</button>) : null  }
-              
+              {todo.length !== 0 ? (
+                <button
+                  onClick={() => dispatch(cleartodo())}
+                  style={{
+                    borderRadius: "10px",
+                    color: "white",
+                    border: "none",
+                    padding: "9px 18px",
+                    height: "40px",
+                    fontSize: "20px",
+                    boxShadow: "0px 4px 20px rgba(0,0,0,0.2)",
+                  }}
+                  className="btn"
+                >
+                  Clear All
+                </button>
+              ) : null}
             </form>
           </div>
         </div>
@@ -137,67 +143,66 @@ const List = () => {
                 margin: "10px",
               }}
             >
-              <span style={{ fontSize: "25px", padding: "0px 10px" }}>
+              <span className="no" style={{ fontSize: "25px", padding: "0px 10px" }}>
                 {index + 1}.
               </span>{" "}
-
-
               {editingIndex === index ? (
-              <input
-                value={editedValue}
-                onChange={(e) => setEditedValue(e.target.value)}
-                style={{
-                  fontSize: "20px",
-                  padding: "4px",
-                  width: "40vw",
-                  borderRadius: "5px",
-                  border: "1px solid gray"
-                }}
-              />
-            ) : (
-              <li
-                style={{
-                  margin: "10px",
-                  fontSize: "25px",
-                  color: "black",
-                  width: "45vw",
-                }}
-              >
-                {value}
-              </li>
-            )}
-
-            {/* Edit or Save Icon */}
-            {editingIndex === index ? (
-              <FaRegSave
-                onClick={() => handleSave(index)}
-                style={{
-                  width: "25px",
-                  height: "30px",
-                  color: "black",
-                  cursor: "pointer",
-                  margin: "0px 8px",
-                  borderRadius: "5px",
-                  padding: "4px"
-                }}
-              />
-            ) : (
-              <MdEdit
-                onClick={() => handleEditClick(value, index)}
-                style={{
-                  width: "25px",
-                  height: "30px",
-                  cursor: "pointer",
-                  margin: "0px 8px"
-                }}
-                className="edit"
-              />
-            )}
-              
+                <input
+                  value={editedValue}
+                  onChange={(e) => setEditedValue(e.target.value)}
+                  style={{
+                    fontSize: "20px",
+                    padding: "4px",
+                    width: "40vw",
+                    borderRadius: "5px",
+                    border: "1px solid gray",
+                  }}
+                  className="no"
+                />
+              ) : (
+                <li
+                  style={{
+                    margin: "10px",
+                    fontSize: "25px",
+                    color: "black",
+                    width: "45vw",
+                  }}
+                  className="no"
+                >
+                  {value}
+                </li>
+              )}
+              {/* Edit or Save Icon */}
+              {editingIndex === index ? (
+                <FaRegSave
+                  onClick={() => handleSave(index)}
+                  style={{
+                    width: "25px",
+                    height: "30px",
+                    color: "black",
+                    cursor: "pointer",
+                    margin: "0px 8px",
+                    borderRadius: "5px",
+                    padding: "4px",
+                  }}
+                  className="icons"
+                />
+              ) : (
+                <MdEdit
+                  onClick={() => handleEditClick(value, index)}
+                  style={{
+                    width: "25px",
+                    height: "30px",
+                    cursor: "pointer",
+                    margin: "0px 8px",
+                  }}
+                  className="edit icons"
+                />
+              )}
               <MdDelete
                 onClick={() => dispatch(removetodo(index))}
-                style={{width:'30px',height: "30px",margin:"0px 10px" }}
-                className="delete"   
+                style={{ width: "30px", height: "30px", margin: "0px 10px" }}
+                className="delete icons"
               />
             </div>
           ))}
