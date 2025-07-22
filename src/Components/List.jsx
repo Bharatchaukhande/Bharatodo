@@ -131,7 +131,10 @@ const List = () => {
             paddingTop: "17px",
           }}
         >
-          {todo.map((value, index) => (
+          
+          { todo.length === 0 ?( <h3>Enter a todo</h3> ) :
+
+          (todo.map((value, index) => (
             <div
               key={index}
               style={{
@@ -205,7 +208,7 @@ const List = () => {
                 className="delete icons"
               />
             </div>
-          ))}
+          )))}
         </div>
       </div>
     </>
